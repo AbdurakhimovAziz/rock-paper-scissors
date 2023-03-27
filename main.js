@@ -1,29 +1,34 @@
-const Game = require('./game');
-const Computer = require('./computer');
+class Main {
+  generateMenu(moves) {
+    let menu = moves.reduce((acc, move, index) => {
+      return (acc += `${index + 1} - ${move}\n`);
+    }, 'Available moves:\n');
 
-const moves = process.argv.slice(2);
+    menu += '0 - exit\n';
+    menu += '? - help';
+    return menu;
+  }
 
-if (moves.length <= 1) {
-  console.log('Please provide 3 or more arguments');
-  process.exit(1);
+  checkArguments(args) {
+    const example = 'node index.js rock paper scissors';
+    if (args.length <= 1) {
+      console.log('Please provide 3 or more arguments. For example:', example);
+      process.exit(1);
+    }
+
+    if (args.length % 2 === 0) {
+      console.log(
+        'Please provide an odd number of arguments. For example:',
+        example
+      );
+      process.exit(1);
+    }
+
+    if (new Set(args).size !== args.length) {
+      console.log('Please provide unique arguments. For example:', example);
+      process.exit(1);
+    }
+  }
 }
 
-if (moves.length % 2 === 0) {
-  console.log('Please provide an odd number of arguments');
-  process.exit(1);
-}
-
-const argsSet = new Set(moves);
-if (argsSet.size !== moves.length) {
-  console.log('Please provide unique arguments');
-  process.exit(1);
-}
-
-const game = new Game(moves);
-const computer = new Computer();
-console.log('Game created', game);
-const key = computer.generateCryptographicKey();
-const move = computer.makeMove(moves);
-
-const hmac = computer.generateHmac(key, move);
-console.log('HMAC:', hmac);
+module.exports = Main;

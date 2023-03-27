@@ -2,14 +2,12 @@ const crypto = require('crypto');
 
 class Computer {
   generateCryptographicKey() {
-    const key = crypto.randomBytes(256);
-    return key;
+    const key = crypto.randomBytes(32);
+    return key.toString('hex');
   }
 
   makeMove(moves) {
     const index = Math.floor(Math.random() * moves.length);
-    console.log(index, moves);
-
     return moves[index];
   }
 
