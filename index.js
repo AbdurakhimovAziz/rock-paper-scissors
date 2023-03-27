@@ -1,7 +1,9 @@
 const prompt = require('prompt-sync')({ sigint: true });
-const Game = require('./game');
+
 const Computer = require('./computer');
+const Game = require('./game');
 const Main = require('./main');
+const Table = require('./table');
 
 const arguments = process.argv.slice(2);
 
@@ -24,7 +26,7 @@ do {
   playerOption = prompt('Enter your move: ');
 
   if (playerOption === '?') {
-    console.log('some help');
+    console.log(Table.generateHelpTable(moves).toString());
     continue;
   }
 
