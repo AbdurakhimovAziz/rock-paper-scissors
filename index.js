@@ -45,6 +45,6 @@ do {
   const winner = game.getWinner(playerMove, computerMove);
   console.log('Your move:', playerMove, '\nComputer move:', computerMove);
   console.log(winner);
-  console.log('Key:', key, '\n');
+  console.log('HMAC Key:', key, '\n');
   break;
 } while (playerOption !== '0');

@@ -18,7 +18,7 @@ class Game {
         ? playerIndex - computerIndex <= half
         : computerIndex - playerIndex > half;
 
-    return isPlayerWinner ? 'You won!' : 'Computer won';
+    return isPlayerWinner ? 'You won!' : 'Computer won!';
   }
 
   getMoves() {
